@@ -18,6 +18,7 @@ trait AccessObject
 
     function getOrganizerKey()
     {
+        dd('here');
         return $this->authObject->organizer_key;
     }
 
