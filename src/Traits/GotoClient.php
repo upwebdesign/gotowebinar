@@ -153,7 +153,7 @@ trait GotoClient
     private function throwResponseException($verb, $response, $exceptionMessage = null): void
     {
         $this->message = $this->getResponseMessage($response->code);
-dd($response);
+
         ($exceptionMessage) ? Log::error('GOTOWEBINAR: HTTP Exception: ' . $this->message . ' - ' . $exceptionMessage . ' Payload: ' . json_encode($response->payload)) : null;
 
         if ($response->hasErrors() && $response->hasBody()) {
