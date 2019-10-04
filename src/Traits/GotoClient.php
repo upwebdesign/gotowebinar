@@ -165,8 +165,10 @@ trait GotoClient
                     break;
 
                 default:
-                    Log::error('GOTOWEBINAR: ' . $verb . ' - ' . $this->message . ': ' . $response->body->description);
-                    throw new GotoException($this->message . ' - ' . $response->body->description);
+                    Log::error('GOTOWEBINAR: ' . $verb . ' - ' . $this->message);
+                    throw new GotoException($this->message);
+                    // Log::error('GOTOWEBINAR: ' . $verb . ' - ' . $this->message . ': ' . $response->body->description);
+                    // throw new GotoException($this->message . ' - ' . $response->body->description);
             }
         }
 
