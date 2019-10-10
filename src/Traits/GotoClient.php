@@ -30,6 +30,10 @@ trait GotoClient
     {
         $verb = strtoupper(trim($verb));
 
+        // We need to check for token here as horizon runs as a daemon
+        // We are using direct by default
+        $this->checkAccessObject('direct');
+
         try {
             switch ($verb) {
 
