@@ -2,6 +2,7 @@
 
 namespace Slakbal\Gotowebinar\Entity;
 
+use Illuminate\Support\Arr;
 
 class EntityAbstract
 {
@@ -28,7 +29,7 @@ class EntityAbstract
             'participants',
         ];
 
-        return array_where(get_object_vars($this), function ($value, $key) use ($blacklist) {
+        return Arr::where(get_object_vars($this), function ($value, $key) use ($blacklist) {
 
             if (!in_array($key, $blacklist)) {
                 return !empty($value);
