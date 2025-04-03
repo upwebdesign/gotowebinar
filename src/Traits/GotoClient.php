@@ -12,7 +12,7 @@ trait GotoClient
 
     protected $G2W_uri = 'https://api.getgo.com/G2W/rest';
 
-    protected $AUTH_uri = 'https://api.getgo.com';
+    protected $AUTH_uri = 'https://authentication.logmeininc.com';
 
     protected $timeout = 10; //seconds
 

@@ -3,6 +3,7 @@
 namespace Slakbal\Gotowebinar\Traits;
 
 use Carbon\Carbon;
+use Httpful\Request;
 use Illuminate\Support\Facades\Log;
 use Slakbal\Gotowebinar\DirectLogin;
 use Slakbal\Gotowebinar\Exception\GotoAuthenticateException;
@@ -67,6 +68,16 @@ trait AccessObject
         } catch (GotoAuthenticateException $e) {
             $this->clearAccessObject(); //make sure the object is cleared from the cache to force a login retry
             throw $e; //bubble the exception up by rethrowing
+        }
+
+        $response = Request::get('https://api.getgo.com/admin/rest/v1/me')
+            ->addHeader('Authorization', 'Bearer ' . $this->authObject->access_token) // Add the Bearer token
+            ->expectsJson() // Expect a JSON response
+            ->send();
+
+        if ($response->code == 200) {
+            $this->authObject->organizer_key = $response->body->key;
+            $this->authObject->account_key = $response->body->accountKey;
         }
 
         $this->rememberAccessObject($this->authObject); //cache the authObject

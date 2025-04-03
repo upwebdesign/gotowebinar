@@ -9,7 +9,7 @@ class DirectLogin
 
     use GotoClient;
 
-    protected $path = 'oauth/v2/token';
+    protected $path = 'oauth/token';
 
 
     public function authenticate()
